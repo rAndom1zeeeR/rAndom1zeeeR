@@ -4,7 +4,7 @@
 
 ## О себе
 
-Frontend/Fullstack-разработчик с 7 годами коммерческого опыта. Около 3,5 лет пишу на React и TypeScript, последний год — на Next.js App Router. На бэкенде работаю с Node.js и NestJS. Делаю SaaS-продукты для e-commerce и маркетплейсов, сервисы аналитики, Telegram Mini Apps и Web3-интерфейсы.
+Frontend/Fullstack-разработчик с 7 годами коммерческого опыта. Около 3,5 лет пишу на React и TypeScript, последний год — на Next.js App Router. На бэкенде работаю с Node.js и NestJS. Делаю SaaS-продукты для e-commerce и маркетплейсов, сервисы аналитики, Telegram Mini Apps и ботов с оплатой, Web3-интерфейсы.
 
 Активно использую ИИ в разработке: Claude Code, Cursor и GrokBot. Настраиваю проекты под агентскую разработку: пишу правила для агентов (AGENTS.md, правила Cursor), подключаю MCP-серверы, встраиваю ИИ-ревью и автопроверки в CI/CD. Агенты берут на себя рутину, тесты и аудиты, а архитектура, ревью и решения остаются за мной.
 
@@ -13,8 +13,8 @@ Frontend/Fullstack-разработчик с 7 годами коммерческ
 ## Стек
 
 **Frontend:** React, Next.js, TypeScript, TanStack Query, Zustand, Redux Toolkit, React Hook Form, Zod, Tailwind, shadcn/ui, Radix, SCSS, Storybook, Vitest, Playwright  
-**Backend:** Node.js, NestJS, Fastify, Prisma, PostgreSQL, ClickHouse, Redis, BullMQ, Neo4j, Supabase  
-**Web3 / Telegram:** TON, TonConnect, TonAPI, Telegram Mini Apps (@tma.js), grammY, Telegraf  
+**Backend:** Node.js, NestJS, Fastify, Prisma, PostgreSQL, MongoDB, Mongoose, ClickHouse, Redis, BullMQ, Neo4j, Supabase  
+**Web3 / Боты:** TON, TonConnect, TonAPI, Telegram Mini Apps (@tma.js), grammY, Telegraf, discord.js, Telegram Payments, ЮKassa, Google Sheets API  
 **Infra:** Docker, Dokploy, GitHub Actions, Grafana, Prometheus, Loki, MinIO  
 **AI:** Claude Code, Cursor, GrokBot, AGENTS.md, MCP
 
@@ -23,6 +23,7 @@ Frontend/Fullstack-разработчик с 7 годами коммерческ
 ## Личные-проекты и open source
 
 ### ArrayTON
+
 Платформа аналитики блокчейна TON: каталоги протоколов, жеттонов и кошельков, PnL кошельков, AML и кластеризация, граф переводов, анализ маркет-мейкеров, лидерборд, блог и админка. Вход через TonConnect и Telegram.
 
 <details open><summary><b>Фронтенд</b></summary>
@@ -81,6 +82,7 @@ Frontend/Fullstack-разработчик с 7 годами коммерческ
 </details>
 
 ### TonAPI JS SDK — форк tonkeeper/tonapi-js, open source
+
 Типизированный TypeScript-клиент tonapi.io и адаптер для @ton/ton, опубликованы в npm как [@random1ze/ton-api-client](https://www.npmjs.com/package/@random1ze/ton-api-client) и [@random1ze/ton-api-adapter](https://www.npmjs.com/package/@random1ze/ton-api-adapter).  
 Стек: TypeScript, OpenAPI, swagger-typescript-api, tsup, Turborepo, npm.
 
@@ -90,6 +92,7 @@ Frontend/Fullstack-разработчик с 7 годами коммерческ
 - Подключил SDK к бэкенду ArrayTON на NestJS через единую точку импорта и построил поверх него слой лимитов, кэша и метрик.
 
 ### @de-kit/st-ui
+
 UI-библиотека React-компонентов и дизайн-токенов для продуктов СПЛИТ-ТЕСТа, опубликована в npm и используется в мини-приложении респондента (Telegram, MAX, веб).  
 Стек: React, TypeScript, SCSS, CSS Custom Properties, tsdown, Storybook, Vitest, Testing Library, axe-core, Floating UI, oxlint, changesets, GitHub Actions, pnpm.
 
@@ -99,8 +102,32 @@ UI-библиотека React-компонентов и дизайн-токен�
 - Настроил сборку ESM и CJS с типами и отдельными входами на каждый компонент для tree-shaking, проверку экспортов через publint и attw, генерацию React-иконок из 114 SVG.
 - Уменьшил npm-пакет почти вдвое (архив 285 → 172 КБ), отказавшись от публикации sourcemap.
 - Выстроил quality gate в CI на GitHub Actions: typecheck, lint, format, синхронизация документации токенов, тесты с порогами покрытия (фактически 97% statements, 90% branches), сборка.
-- Унифицировал API компонентов: управляемое и неуправляемое состояние, forwardRef, asChild/Slot, публичный контракт состояний через data-*.
+- Унифицировал API компонентов: управляемое и неуправляемое состояние, forwardRef, asChild/Slot, публичный контракт состояний через data-\*.
 - Задокументировал библиотеку: Storybook с a11y-аддоном, README с требованиями к сборке и браузерам, список архитектурных решений.
+
+### Telegram-бот: материалы, сессии и закрытый клуб
+
+Коммерческий бот: продаёт материалы, записывает на индивидуальные сессии и открывает доступ в закрытый клуб. Оплата проходит в Telegram через ЮKassa — после неё бот выдаёт файл, подтверждает запись или присылает ссылки в канал и чат.  
+Стек: TypeScript, Node.js, grammY, MongoDB (Mongoose), Telegram Payments, ЮKassa, Zod, Winston, Vitest, Docker, GitHub Actions.
+
+- Довёл бота до продакшена с каталогом услуг: бесплатный тест, PDF-гайд, индивидуальная сессия и подписка на закрытый канал и чат на 30 дней. После оплаты заказ сохраняется в MongoDB, админы получают уведомление, клиент получает файл или инвайт.
+- Реализовал оплату через Telegram Payments и ЮKassa: инвойс, pre-checkout с проверкой товара и суммы, фискальный чек с email. Брошенные счета отслеживаются, админ получает уведомление через 5 минут.
+- Собрал жизненный цикл подписки: активация и продление, автоодобрение заявок на вступление, почасовой cron с напоминанием за 3 дня до конца и исключением из канала и чата по истечении срока.
+- Сделал админку внутри бота: пользователи, статистика оплат и тестов, сегментированная рассылка с очередью и паузами под флуд-лимиты Telegram.
+- Добавил встроенный тест из 25 вопросов с подсчётом балла и персональными рекомендациями.
+- Покрыл проект тестами на Vitest (около 120 кейсов, mongodb-memory-server), настроил oxlint/oxfmt и CI на GitHub Actions.
+- Собрал multi-stage Docker-образ на Node 22 Alpine с non-root пользователем. Деплой на Ubuntu по SSH, Docker Compose и бэкапы MongoDB.
+
+### Discord-бот: анонсы, отметки и журнал событий
+
+Публикует анонсы событий с реакциями, напоминает тем, кто не отметился, синхронизирует отметки с Google Таблицей и ведёт журнал событий сервера в PostgreSQL.  
+Стек: TypeScript, Node.js, discord.js, PostgreSQL, Prisma, Google Sheets API, oxlint, oxfmt, Docker.
+
+- Спроектировал и разработал Discord-бота на TypeScript и discord.js для двух серверов: приветствия, журнал событий и клановые анонсы. У каждого сервера свои каналы и конфиги, данные хранятся в PostgreSQL через Prisma.
+- Реализовал команду /announce: анонс из JSON-шаблона, дата события с учётом часового пояса и правил вроде «вторая неделя месяца» и «четвёртая пятница». Под анонсом сразу ставятся реакции, сообщение сохраняется в базу.
+- Сделал сбор отметок. /reaction формирует отчёт по реакциям и синхронизирует его с Google Таблицей через service account, сопоставляя эмодзи с колонками. /ping-missing пингует участников, которые не отметились, и раз в час обновляет список до старта события.
+- Настроил журнал модерации: входы и выходы, голосовые каналы, роли, тайм-ауты, баны, инвайты, удаление сообщений. События дедуплицируются в окне 60 секунд, исполнитель берётся из audit log Discord, уведомления приходят embed-сообщениями.
+- Собрал multi-stage Docker-образ на Node 22 Alpine с non-root пользователем и `prisma migrate deploy` при старте. Настроил строгий линтинг oxlint и форматирование oxfmt.
 
 ---
 
@@ -109,6 +136,7 @@ UI-библиотека React-компонентов и дизайн-токен�
 ## Digital Evolution — с 2023
 
 ### Sellsi.AI
+
 AI SaaS для селлеров Ozon и Wildberries: агент в чате и сценарии для работы с карточками, остатками FBO/FBS, отзывами, аналитикой, конкурентами и генерацией контента и видео. Команда из 6 разработчиков, тестера и аналитика, Supabase, более 10 внешних интеграций.  
 Стек: React, TypeScript, Vite, TanStack Query, Zustand, React Hook Form, Zod, shadcn/ui, Radix, Tailwind, Recharts, Vitest, Supabase.
 
@@ -123,6 +151,7 @@ AI SaaS для селлеров Ozon и Wildberries: агент в чате и �
 - Интегрировал фронтенд с REST API Ozon и Wildberries через edge-функции Supabase, включая OAuth-подключение Ozon.
 
 ### Сплит-Тест — кабинет заказчика
+
 SaaS для A/B-тестов и онлайн-исследований: заказчики проверяют на реальных респондентах карточки товаров, упаковку, дизайн и видео.  
 Стек: React, TypeScript, React Router, SCSS Modules, Highcharts, Kinescope, Jest, Testing Library, ESLint, Prettier.
 
@@ -137,6 +166,7 @@ SaaS для A/B-тестов и онлайн-исследований: зака�
 - Интегрировал вход через Ozon ID и eLama и скрытие изображений 18+.
 
 ### Сплит-Тест — приложение респондента
+
 Мини-приложение в Telegram и MAX, веб-версия и WebView в мобильном приложении. Респонденты проходят A/B-тесты и опросы, выполняют задания и выводят вознаграждение.  
 Стек: React, TypeScript, Redux Toolkit, React Router, SCSS, Telegram Mini Apps SDK (@tma.js), dnd-kit, Framer Motion, GSAP, axios, ESLint, Stylelint, Prettier.
 
@@ -151,6 +181,7 @@ SaaS для A/B-тестов и онлайн-исследований: зака�
 - Разработал мини-игру «Камень-ножницы-бумага» для вовлечения респондентов: анимации на GSAP и Framer Motion, магазин, таблица лидеров, приглашение друзей.
 
 ### Seller Space
+
 SaaS-кабинет для селлеров Wildberries, Ozon и Яндекс Маркета: PIM и карточки товаров, продвижение и цены, генератор инфографики, аналитика, заказы и поставки FBS.  
 Стек: React, TypeScript, Redux Toolkit, React Router, SCSS, axios, Highcharts, Chart.js, Tiptap, react-select, react-dnd, ZXing, ESLint, Prettier, Bitbucket Pipelines.
 
@@ -163,6 +194,7 @@ SaaS-кабинет для селлеров Wildberries, Ozon и Яндекс М
 - Поддерживал UI-кит и адаптив: общие кнопки, селекты и модалки, SCSS-миксины и брейкпоинты, мобильные версии сканера, тулбара и чатов.
 
 ### «Мне Надо»
+
 Маркетплейс mnenado.ru: каталог и карточки товаров, поиск и фильтры, корзина и оформление заказа, пункты выдачи, личный кабинет; оптовые и розничные продажи.  
 Стек: Laravel, Livewire, Blade, PHP, SCSS, JavaScript, Vite, jQuery, Yandex Maps API, axios, wire-elements/modal, ESLint, Prettier.
 
@@ -175,6 +207,7 @@ SaaS-кабинет для селлеров Wildberries, Ozon и Яндекс М
 - Сверстал модальные окна скидок и карты, доработал галерею товара на Fotorama в связке с Livewire, добавил микроразметку хлебных крошек.
 
 ### Корпоративный сайт Digital Evolution (de.ru)
+
 Лендинг IT-компании: продукты Seller Space, SplitTest и Sellsi.AI, кейсы, отзывы, контакты и политика конфиденциальности.  
 Стек: Next.js (App Router), React, TypeScript, Sass, react-hook-form, nodemailer, oxlint, oxfmt, pnpm.
 
@@ -186,6 +219,7 @@ SaaS-кабинет для селлеров Wildberries, Ozon и Яндекс М
 - Настроил линтинг и форматирование на OXLint (type-aware, deny-warnings) и OXFmt вместо ESLint и Prettier.
 
 ## StoreLand — 2019–2023
+
 SaaS-платформа для интернет-магазинов. Разрабатывал готовые шаблоны дизайна для каталога платформы — от макета до релиза демо-магазина — и делал доработки для клиентов.  
 Стек: JavaScript (ES6+), jQuery, HTML5, CSS3, шаблонизатор StoreLand, Swiper, Fancybox, Owl Carousel, IMask, Gulp, BrowserSync, PostHTML, Stylelint, Prettier, Git.
 
